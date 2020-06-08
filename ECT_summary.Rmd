@@ -1,12 +1,13 @@
 ---
 title: "Virtual East Coast Trail Run/Walk"
-html_document:
-    theme: united
+output:
+  html_document:
+    theme: cerulean
     highlight: tango
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE,warning = FALSE, message = FALSE)
 
 library(gsheet)
 library(tidyverse)
@@ -14,6 +15,7 @@ library(plotly)
 library(lubridate)
 library(knitr)
 library(kableExtra)
+library(patchwork)
 ```
 
 ```{r data}
@@ -37,11 +39,13 @@ Enter your runs and walks at [here](https://forms.gle/tNduBU5ztHg4K8uG7).
 
 The most recent activity included in this update is `r r_date`.
 
+***
+
 ## Are we there yet?
 
 Percentage of our total goal completed to date:
 
-```{r pressure, echo=FALSE}
+```{r }
 p1<-data %>% 
   summarise(km_completed = sum(Distance_km),
             m_completed = sum(Elevation.gain_m),
@@ -64,6 +68,44 @@ p1<-data %>%
 
 ggplotly(p1)
 ```
+
+```{r}
+g1<-data %>% 
+  separate_rows(Participant) %>% 
+  ggplot()+
+  geom_bar(aes(x = Date, y = Distance_km),stat = "identity", fill = "blue",na.rm=TRUE)+
+  theme_light()+
+  scale_x_date(limits = as.Date(c("2020-05-31","2020-07-31")),
+               date_minor_breaks = "1 day")+
+  ylab("Distance (km)")
+
+g2<-data %>% 
+  separate_rows(Participant) %>% 
+  ggplot()+
+  geom_bar(aes(x = Date, y = Elevation.gain_m),stat = "identity", fill = "dark green",na.rm=TRUE)+
+  theme_light()+
+  scale_x_date(limits = as.Date(c("2020-05-31","2020-07-31")),
+               date_minor_breaks = "1 day")+
+  ylab("Elevation gain (m)")
+
+g1 / g2
+```
+
+***
+## Everyone counts!
+
+A quick summary of the number of activities logged by each one of us.
+
+```{r}
+data %>% 
+  separate_rows(Participant) %>% 
+  group_by(Participant) %>% 
+  summarise('Number of Activities' = n())%>% ungroup() %>% 
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE)
+```
+
+***
 
 ## Where are we going?
 
