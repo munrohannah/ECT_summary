@@ -25,6 +25,9 @@ data<-gsheet2tbl('docs.google.com/spreadsheets/d/1Ji5gLBc8HbbEogKwV3yFj9MWn80Kw9
 total<-read.csv("totalDIS.csv")
 
 data<-data %>% 
+  rename(Date = `Date of Activity`,
+         Distance_km = `Distance (Kilometers)`,
+         Elevation.gain_m = `Elevation gain (Meters)`) %>% 
   mutate(Date = mdy(Date))
 
 total_km<-sum(total$Length.KM)
@@ -48,7 +51,7 @@ Percentage of our total goal completed to date:
 ```{r }
 p1<-data %>% 
   summarise(km_completed = sum(Distance_km),
-            m_completed = sum(Elevation.gain_m),
+            m_completed = sum(Elevation.gain_m, na.rm = TRUE),
             p_distance = km_completed/total_km*100,
             p_elevation = m_completed/total_m*100) %>% 
   pivot_longer(names_to = "metric", values_to = 'N',cols = starts_with("p_")) %>% 
@@ -57,7 +60,7 @@ p1<-data %>%
   geom_point( color="blue", size=4, alpha=0.6) +
   theme_light() +
   scale_y_continuous(limits = c(0,100))+
-  scale_x_discrete(labels = c("Elevation (m)","Distance (km)"))+
+  scale_x_discrete(labels = c("Distance (km)","Elevation (m)"))+
   coord_flip() +
   theme(
     panel.grid.major.y = element_blank(),
@@ -68,13 +71,13 @@ p1<-data %>%
 
 ggplotly(p1)
 ```
-
+### Daily totals
 ```{r}
 g1<-data %>% 
   separate_rows(Participant) %>% 
   ggplot()+
   geom_bar(aes(x = Date, y = Distance_km),stat = "identity", fill = "blue",na.rm=TRUE)+
-  theme_light()+
+  theme_bw()+
   scale_x_date(limits = as.Date(c("2020-05-31","2020-07-31")),
                date_minor_breaks = "1 day")+
   ylab("Distance (km)")
@@ -83,10 +86,38 @@ g2<-data %>%
   separate_rows(Participant) %>% 
   ggplot()+
   geom_bar(aes(x = Date, y = Elevation.gain_m),stat = "identity", fill = "dark green",na.rm=TRUE)+
-  theme_light()+
+  theme_bw()+
   scale_x_date(limits = as.Date(c("2020-05-31","2020-07-31")),
                date_minor_breaks = "1 day")+
   ylab("Elevation gain (m)")
+
+g1 / g2
+```
+### Daily progress
+```{r}
+g1<-data %>% 
+  separate_rows(Participant) %>% 
+  arrange(Date) %>% 
+  mutate(Dist_sum = cumsum(Distance_km)) %>% 
+  ggplot()+
+  geom_line(aes(x = Date, y = Dist_sum), color = "blue",na.rm=TRUE, size = 2)+
+  theme_bw()+
+  scale_x_date(limits = as.Date(c("2020-05-31","2020-07-31")),
+               date_minor_breaks = "1 day")+
+  ylab("Distance (km)")+
+  geom_hline(aes(yintercept = total_km), color = "red")
+
+g2<-data %>% 
+  separate_rows(Participant) %>% 
+  arrange(Date) %>% 
+  mutate(Elev_sum = cumsum(Elevation.gain_m)) %>% 
+  ggplot()+
+  geom_line(aes(x = Date, y = Elev_sum),color = "dark green",na.rm=TRUE, size = 2)+
+  theme_bw()+
+  scale_x_date(limits = as.Date(c("2020-05-31","2020-07-31")),
+               date_minor_breaks = "1 day")+
+  ylab("Elevation gain (m)")+
+  geom_hline(aes(yintercept = total_m), color = "red")
 
 g1 / g2
 ```
