@@ -12,6 +12,8 @@ library(gsheet)
 library(tidyverse)
 library(plotly)
 library(lubridate)
+library(knitr)
+library(kableExtra)
 ```
 
 ```{r data}
@@ -62,3 +64,17 @@ p1<-data %>%
 
 ggplotly(p1)
 ```
+
+## Where are we going?
+
+There is a break down of all the segements of the ECT. There are many sections of road between the trail. We are going the entire distance, just like a through hike! There is missing elevation measurements but those are mostly the new sections.
+
+```{r}
+total %>%
+  select(Path.Name...Type,Length.KM,Gain) %>% 
+  rename('Path Name' = Path.Name...Type,
+         'Length (km)' = Length.KM,
+         'Elevation gain (m)' = Gain) %>% 
+  DT::datatable( editable = 'cell')
+```
+
