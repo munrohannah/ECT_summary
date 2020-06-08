@@ -1,0 +1,64 @@
+---
+title: "Virtual East Coast Trail Run/Walk"
+html_document:
+    theme: united
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(gsheet)
+library(tidyverse)
+library(plotly)
+library(lubridate)
+```
+
+```{r data}
+# grabing data from google documents
+
+data<-gsheet2tbl('docs.google.com/spreadsheets/d/1Ji5gLBc8HbbEogKwV3yFj9MWn80Kw9jpFnMKsGzc-Jo')
+total<-read.csv("totalDIS.csv")
+
+data<-data %>% 
+  mutate(Date = mdy(Date))
+
+total_km<-sum(total$Length.KM)
+total_m<-sum(total$Gain, na.rm = T)
+
+r_date<-min(data$Date)
+```
+
+This is an update of our progress as we try and run and walk the equivelent distance of the East Coast Trail which runs from Topsail to Cappahadyen in Newfoundland. The total distance is `r total_km`km and the total elevation is `r total_m`m.
+
+Enter your runs and walks at [here](https://forms.gle/tNduBU5ztHg4K8uG7).
+
+The most recent activity included in this update is `r r_date`.
+
+## Are we there yet?
+
+Percentage of our total goal completed to date:
+
+```{r pressure, echo=FALSE}
+p1<-data %>% 
+  summarise(km_completed = sum(Distance_km),
+            m_completed = sum(Elevation.gain_m),
+            p_distance = km_completed/total_km*100,
+            p_elevation = m_completed/total_m*100) %>% 
+  pivot_longer(names_to = "metric", values_to = 'N',cols = starts_with("p_")) %>% 
+  ggplot(aes(x=metric, y=N)) +
+  geom_segment( aes(x=metric, xend=metric, y=0, yend=N), color="skyblue") +
+  geom_point( color="blue", size=4, alpha=0.6) +
+  theme_light() +
+  scale_y_continuous(limits = c(0,100))+
+  scale_x_discrete(labels = c("Elevation (m)","Distance (km)"))+
+  coord_flip() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.y = element_blank()
+  )+
+  ylab("Percent Completed")+xlab("")
+
+ggplotly(p1)
+```

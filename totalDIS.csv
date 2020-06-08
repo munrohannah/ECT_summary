@@ -1,0 +1,52 @@
+order,t.r,Path Name / Type,From,To,Length KM,Gain
+2,t,Miner's Path,Topsail (Topsail Beach Road),Paradise / St. Thomas (Laurie Road),3.92,
+3,r,road connector,Miner's Path North,Goat Cove South,3.6,
+4,t,Goat Cove Path,Broad Cove,Beachy Cove,3.29,
+5,r,road connector,Goat Cove North,Princes's Ridge South,0.35,
+6,t,Prince's Ridge Path,Beachy Cove,Portugal Cove,5.99,
+7,r,road connector,Princes's Ridge North,Picco's Ridge South,1,
+8,t,Picco’s Ridge,Portugal Cove,Bauline,14.5,656
+9,r,road connector,Picco’s Ridge North,White Horse South,0.4,
+10,t,White Horse,Bauline,Cape St. Francis (trail junction),17.5,806
+15,r,road connector,White Horse North,Biscan Cove North,0.6,
+16,t,Biscan Cove,Cape St. Francis (trail junction),Pouch Cove,7.3,319
+17,r,road connector,Biscan Cove South,Stiles Cove North,1.9,
+18,t,Stiles Cove,Pouch Cove,Flat Rock,15.1,614
+19,r,road connector,Stiles Cove South,Father Troy’s North,1.4,
+20,t,"Father Troy’s ""Trail""",Flat Rock,Torbay,8.7,322
+21,r,road connector,Father Troy’s South,Silver Mine Head North,1.3,
+22,t,Silver Mine Head,Torbay,Middle Cove,2.4,48
+23,r,road connector,Silver Mine Head South,Cobbler North,2.9,
+24,t,Cobbler,Outer Cove,"Logy Bay (rhymes with ""stogie"")",5.1,366
+25,r,road connector,Cobbler South *,Sugarloaf North,5,11
+26,t,Sugarloaf,Logy Bay,Quidi Vidi (St. John’s),8.9,329
+27,r,road connector,Sugarloaf South,Deadmans Bay North,8.2,51
+28,t,Deadmans Bay,Fort Amherst (St. John’s),Blackhead,10.6,400
+29,r,road connector,Deadmans Bay South,Blackhead North,0.27,
+30,t,Cape Spear,Blackhead,Maddox Cove,15.6,423
+31,r,road connector,Cape Spear South,Motion North,2.7,149
+32,t,Motion,Petty Harbour,(trailhead junction),13.5,447
+34,t,Spout,(trailhead junction),Bay Bulls,16.3,509
+35,r,road connector,Spout South,Mickeleens North,4.9,
+36,t,Mickeleens,Bay Bulls,Witless Bay,7.3,255
+37,r,road connector,Mickeleens South,Beaches North,5.4,
+38,t,Beaches,Witless Bay,Mobile,7,127
+39,r,road connector,Beaches South,Tinkers Point North,1.4,
+40,t,Tinkers Point,Mobile,Tors Cove,5.1,133
+41,r,road connector,Tinkers Point South,La Manche Village North,5.1,
+42,t,La Manche Village,Bauline East,La Manche Village (site),2.1,
+44,t,Flamber Head,La Manche Village (site),Brigus South,11.5,419
+45,r,road connector,Flamber Head South,Brigus Head North,0.35,
+46,t,Brigus Head,Brigus South,Admirals Cove,6.5,233
+47,r,road connector,Admirals Cove,Cape Broyle,6.7,
+48,t,Cape Broyle Head,Cape Broyle,Calvert,18.3,730
+49,r,road connector,Cape Broyle Head South,Caplin Bay North,4.4,
+50,t,Caplin Bay,Calvert,Ferryland,5.2,130
+51,r,road connector,Caplin Bay South,Sounding Hills North,0.9,
+52,t,Sounding Hills,Ferryland,Aquaforte,5.5,258
+53,r,road connector,Sounding Hills South,Spurwink Island North,3,
+54,t,Spurwink Island,Aquaforte,Port Kirwan,20.4,749
+55,r,road connector,Spurwink Island South,Bear Cove Point North,7,
+56,t,Bear Cove Point,Kingman's Cove,Renews,11.6,249
+57,r,road connector,Bear Cove Point South,Island Meadow North,4.7,
+58,t,Island Meadow,Renews,Cappahayden,10.1,200
