@@ -35,7 +35,7 @@ total_m<-sum(total$Gain, na.rm = T)
 
 r_date<-min(data$Date)
 ```
-![East Coast Trail](Photos/Stairs_2019.jpeg)
+![East Coast Trail](Photos/Stairs_2019.jpg)
 
 This is an update of our progress as we try and run and walk the equivelent distance of the East Coast Trail which runs from Topsail to Cappahadyen in Newfoundland. The total distance is `r total_km`km and the total elevation is `r total_m`m.
 
