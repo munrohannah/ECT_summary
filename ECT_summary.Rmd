@@ -55,7 +55,7 @@ p1<-data %>%
             p_distance = km_completed/total_km*100,
             p_elevation = m_completed/total_m*100) %>% 
   pivot_longer(names_to = "metric", values_to = 'N',cols = starts_with("p_")) %>% 
-  ggplot(aes(x=metric, y=N)) +
+  ggplot(aes(x=metric, y=N, text = paste0(round(N,2)," %"))) +
   geom_segment( aes(x=metric, xend=metric, y=0, yend=N), color="skyblue") +
   geom_point( color="blue", size=4, alpha=0.6) +
   theme_light() +
@@ -69,7 +69,7 @@ p1<-data %>%
   )+
   ylab("Percent Completed")+xlab("")
 
-ggplotly(p1)
+ggplotly(p1,tooltip="text")
 ```
 ### Daily totals
 ```{r}
