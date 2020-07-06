@@ -28,12 +28,14 @@ data<-data %>%
   rename(Date = `Date of Activity`,
          Distance_km = `Distance (Kilometers)`,
          Elevation.gain_m = `Elevation gain (Meters)`) %>% 
-  mutate(Date = mdy(Date))
+  mutate(Date = mdy(Date)) %>% 
+  filter(!is.na(Distance_km))
 
 total_km<-sum(total$Length.KM)
 total_m<-sum(total$Gain, na.rm = T)
 
 r_date<-min(data$Date)
+today()
 ```
 ![East Coast Trail](Photos/Coast_2019.jpg)
 
@@ -43,7 +45,7 @@ Enter your runs and walks at [here](https://forms.gle/tNduBU5ztHg4K8uG7).
 
 Looking for distance or elevation? You can always map your walks [here](https://onthegomap.com/#/create). I love this website to plan routes.
 
-The most recent activity included in this update is `r r_date`.
+The most recent activity included in this update is `r r_date`. Just so you know when I updated last which was `r today()`.
 
 ***
 
