@@ -35,11 +35,13 @@ total_m<-sum(total$Gain, na.rm = T)
 
 r_date<-min(data$Date)
 ```
-![East Coast Trail](Photos/Stairs_2019.jpg)
+![East Coast Trail](Photos/Coast_2019.jpg)
 
 This is an update of our progress as we try and run and walk the equivelent distance of the East Coast Trail which runs from Topsail to Cappahadyen in Newfoundland. The total distance is `r total_km`km and the total elevation is `r total_m`m.
 
 Enter your runs and walks at [here](https://forms.gle/tNduBU5ztHg4K8uG7).
+
+Looking for distance or elevation? You can always map your walks [here](https://onthegomap.com/#/create). I love this website to plan routes.
 
 The most recent activity included in this update is `r r_date`.
 
@@ -79,7 +81,7 @@ g1<-data %>%
   ggplot()+
   geom_bar(aes(x = Date, y = Distance_km),stat = "identity", fill = "blue",na.rm=TRUE)+
   theme_bw()+
-  scale_x_date(limits = as.Date(c("2020-05-31","2020-07-31")),
+  scale_x_date(limits = as.Date(c("2020-07-01","2020-08-31")),
                date_minor_breaks = "1 day")+
   ylab("Distance (km)")
 
@@ -88,7 +90,7 @@ g2<-data %>%
   ggplot()+
   geom_bar(aes(x = Date, y = Elevation.gain_m),stat = "identity", fill = "dark green",na.rm=TRUE)+
   theme_bw()+
-  scale_x_date(limits = as.Date(c("2020-05-31","2020-07-31")),
+  scale_x_date(limits = as.Date(c("2020-07-01","2020-08-31")),
                date_minor_breaks = "1 day")+
   ylab("Elevation gain (m)")
 
@@ -103,7 +105,7 @@ g1<-data %>%
   ggplot()+
   geom_line(aes(x = Date, y = Dist_sum), color = "blue",na.rm=TRUE, size = 2)+
   theme_bw()+
-  scale_x_date(limits = as.Date(c("2020-05-31","2020-07-31")),
+  scale_x_date(limits = as.Date(c("2020-07-01","2020-08-31")),
                date_minor_breaks = "1 day")+
   ylab("Distance (km)")+
   geom_hline(aes(yintercept = total_km), color = "red")
@@ -115,13 +117,15 @@ g2<-data %>%
   ggplot()+
   geom_line(aes(x = Date, y = Elev_sum),color = "dark green",na.rm=TRUE, size = 2)+
   theme_bw()+
-  scale_x_date(limits = as.Date(c("2020-05-31","2020-07-31")),
+  scale_x_date(limits = as.Date(c("2020-07-01","2020-08-31")),
                date_minor_breaks = "1 day")+
   ylab("Elevation gain (m)")+
   geom_hline(aes(yintercept = total_m), color = "red")
 
 g1 / g2
 ```
+
+![A few icebergs](Photos/Iceberg_2019.jpg)
 
 ***
 ## Everyone counts!
@@ -137,6 +141,8 @@ data %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE)
 ```
 
+![Looking south from the most northern point](Photos/CF_2019.jpg)
+
 ***
 
 ## Where are we going?
@@ -151,4 +157,12 @@ total %>%
          'Elevation gain (m)' = Gain) %>% 
   DT::datatable( editable = 'cell')
 ```
+
+![You never know what you will see](Photos/Cows_2019.jpg)
+
+***
+
+## Your photos from this year
+
+Upload and I will add a few
 
