@@ -35,7 +35,6 @@ total_km<-sum(total$Length.KM)
 total_m<-sum(total$Gain, na.rm = T)
 
 r_date<-min(data$Date)
-today()
 ```
 ![East Coast Trail](Photos/Coast_2019.jpg)
 
