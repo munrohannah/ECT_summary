@@ -137,7 +137,8 @@ A quick summary of the number of activities logged by each one of us.
 data %>% 
   separate_rows(Participant) %>% 
   group_by(Participant) %>% 
-  summarise('Number of Activities' = n())%>% ungroup() %>% 
+  summarise('Number of Activities' = n(),
+            'Last Actvity' = max(Date))%>% ungroup() %>% 
   kable() %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = FALSE)
 ```
