@@ -166,5 +166,6 @@ total %>%
 
 ## Your photos from this year
 
-Upload and I will add a few
+![](Photos/IMG_20200710_154312 - Karen Clark.jpg) 
+![](Photos/IMG_20200710_154358 - Karen Clark.jpg)
 
