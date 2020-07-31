@@ -25,6 +25,7 @@ data<-gsheet2tbl('docs.google.com/spreadsheets/d/1Ji5gLBc8HbbEogKwV3yFj9MWn80Kw9
 total<-read.csv("totalDIS.csv")
 
 data<-data %>% 
+  separate_rows(Participant) %>% 
   rename(Date = `Date of Activity`,
          Distance_km = `Distance (Kilometers)`,
          Elevation.gain_m = `Elevation gain (Meters)`) %>% 
