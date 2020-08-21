@@ -64,7 +64,7 @@ p1<-data %>%
   geom_segment( aes(x=metric, xend=metric, y=0, yend=N), color="skyblue") +
   geom_point( color="blue", size=4, alpha=0.6) +
   theme_light() +
-  scale_y_continuous(limits = c(0,100))+
+  scale_y_continuous(limits = c(0,200))+
   scale_x_discrete(labels = c("Distance (km)","Elevation (m)"))+
   coord_flip() +
   theme(
@@ -162,6 +162,7 @@ total %>%
 ```
 
 ![You never know what you will see](Photos/Cows_2019.jpg)
+
 
 ***
 
