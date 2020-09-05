@@ -64,7 +64,7 @@ p1<-data %>%
   geom_segment( aes(x=metric, xend=metric, y=0, yend=N), color="skyblue") +
   geom_point( color="blue", size=4, alpha=0.6) +
   theme_light() +
-  scale_y_continuous(limits = c(0,200))+
+  scale_y_continuous(limits = c(0,250))+
   scale_x_discrete(labels = c("Distance (km)","Elevation (m)"))+
   coord_flip() +
   theme(
@@ -170,4 +170,42 @@ total %>%
 
 ![](Photos/IMG_20200710_154312 - Karen Clark.jpg) 
 ![](Photos/IMG_20200710_154358 - Karen Clark.jpg)
+
+```{r eval = FALSE, echo = FALSE}
+
+# most elevation per km in a single activity
+data %>% 
+  mutate(elev.km = Elevation.gain_m/Distance_km,
+         rank = rank(-elev.km)) %>% 
+  filter( rank == min(rank)) %>% 
+  select(Participant, Date, Distance_km, Elevation.gain_m, elev.km)
+
+# longest activity
+data %>% 
+  mutate(rank = rank(-Distance_km)) %>% 
+  filter( rank == 1) %>% 
+  select(Participant, Date, Distance_km, Elevation.gain_m)
+
+# most elevation activity
+data %>% 
+  mutate(rank = rank(-Elevation.gain_m)) %>% 
+  filter( rank == 2) %>% 
+  select(Participant, Date, Distance_km, Elevation.gain_m)
+
+# most elevation total
+summary<- data %>% 
+  group_by(Participant) %>% 
+  summarise(elev = sum(Elevation.gain_m),
+            km = sum(Distance_km),
+            elev.km_total = elev/km,
+            km_var = var(Distance_km),
+            n_act = n())
+
+#total distance
+summary %>% 
+  mutate(rank = rank(elev.km_total)) %>% 
+  filter( rank < 4) %>% 
+  select(Participant,km_var)
+
+```
 
